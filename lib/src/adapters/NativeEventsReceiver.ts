@@ -33,7 +33,7 @@ export class NativeEventsReceiver {
   public registerRemoteNotificationOpened(callback: (notification: Notification, completion: () => void, actionResponse?: NotificationActionResponse) => void): EmitterSubscription {
     return this.emitter.addListener('notificationOpened', (response, completion) => {
       const action = response.action ? new NotificationActionResponse(response.action) : undefined
-      callback(this.notificationFactory.fromPayload(response.notification), completion, action);
+      callback(this.notificationFactory.fromPayload(response.notification || response), completion, action);
     });
   }
 

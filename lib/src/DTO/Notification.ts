@@ -4,7 +4,10 @@ export class Notification {
 
   constructor(payload: object) {
     this.payload = payload;
-    this.identifier = this.payload.identifier;
+    this.identifier = '';
+    if(payload!==null) {
+      this.identifier = this.payload.identifier || this.payload.notId || '';
+    }
   }
 
   get title(): string {
@@ -12,7 +15,7 @@ export class Notification {
   }
 
   get body(): string {
-    return this.payload.body;
+    return this.payload.body||this.payload.message;
   }
 
   get sound(): string {

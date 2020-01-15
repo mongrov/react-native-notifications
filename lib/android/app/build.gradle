@@ -33,8 +33,8 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 27
+        minSdkVersion 18
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -93,7 +93,7 @@ android {
 }
 
 dependencies {
-    implementation "com.google.firebase:firebase-messaging:17.3.0"
+    api "com.google.firebase:firebase-messaging:20.1.0"
     implementation 'com.facebook.react:react-native:+'
 
     // tests

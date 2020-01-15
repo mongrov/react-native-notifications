@@ -15,7 +15,8 @@ public class PushNotificationProps {
     }
 
     public String getBody() {
-        return mBundle.getString("body");
+        String str=mBundle.getString("body");
+        return (str != null && !str.isEmpty())?str:mBundle.getString("message");
     }
 
     public Bundle asBundle() {
