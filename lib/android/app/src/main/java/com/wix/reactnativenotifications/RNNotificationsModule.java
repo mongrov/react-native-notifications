@@ -76,6 +76,12 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     }
 
     @ReactMethod
+    public void fetchDeviceToken() {
+        Log.d(LOGTAG, "Native method invocation: fetchDeviceToken()");
+        startFcmIntentService(FcmInstanceIdRefreshHandlerService.EXTRA_MANUAL_REFRESH);
+    }
+
+    @ReactMethod
     public void getInitialNotification(final Promise promise) {
         Log.d(LOGTAG, "Native method invocation: getInitialNotification");
         Object result = null;

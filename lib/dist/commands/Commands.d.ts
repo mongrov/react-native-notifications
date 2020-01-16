@@ -11,6 +11,7 @@ export declare class Commands {
     constructor(nativeCommandsSender: NativeCommandsSender, uniqueIdProvider: UniqueIdProvider, notificationFactory: NotificationFactory);
     postLocalNotification(notification: Notification, id?: number): void;
     getInitialNotification(): Promise<Notification | undefined>;
+    fetchDeviceToken(): void;
     requestPermissions(): void;
     abandonPermissions(): void;
     registerPushKit(): void;

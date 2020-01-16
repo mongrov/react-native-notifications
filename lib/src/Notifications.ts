@@ -65,6 +65,13 @@ export class NotificationsRoot {
   }
 
   /**
+   * fetchDeviceToken
+   */
+  public fetchDeviceToken() {
+    return this.commands.fetchDeviceToken();
+  }
+
+  /**
    * setCategories
    */
   public setCategories(categories: [NotificationCategory?]) {

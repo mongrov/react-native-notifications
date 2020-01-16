@@ -29,6 +29,10 @@ export class Commands {
     });
   }
 
+  public fetchDeviceToken() {
+    return this.nativeCommandsSender.fetchDeviceToken();
+  }
+
   public requestPermissions() {
     const result = this.nativeCommandsSender.requestPermissions();
     return result;

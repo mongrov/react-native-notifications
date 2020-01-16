@@ -13,6 +13,7 @@ export declare class NativeCommandsSender {
     registerPushKit(): void;
     setCategories(categories: [NotificationCategory?]): void;
     getBadgeCount(): Promise<number>;
+    fetchDeviceToken(): void;
     setBadgeCount(count: number): void;
     cancelLocalNotification(notificationId: string): void;
     cancelAllLocalNotifications(): void;

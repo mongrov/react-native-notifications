@@ -11,6 +11,7 @@ interface NativeCommandsModule {
   abandonPermissions(): void;
   refreshToken(): void;
   registerPushKit(): void;
+  fetchDeviceToken(): void;
   getBadgeCount(): Promise<number>;
   setBadgeCount(count: number): void;
   cancelLocalNotification(notificationId: string): void;
@@ -61,6 +62,10 @@ export class NativeCommandsSender {
 
   getBadgeCount(): Promise<number> {
     return this.nativeCommandsModule.getBadgeCount();
+  }
+
+  fetchDeviceToken() {
+    this.nativeCommandsModule.fetchDeviceToken();
   }
 
   setBadgeCount(count: number) {

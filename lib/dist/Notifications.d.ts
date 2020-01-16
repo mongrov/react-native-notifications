@@ -28,6 +28,10 @@ export declare class NotificationsRoot {
      */
     getInitialNotification(): Promise<Notification | undefined>;
     /**
+     * fetchDeviceToken
+     */
+    fetchDeviceToken(): void;
+    /**
      * setCategories
      */
     setCategories(categories: [NotificationCategory?]): void;
