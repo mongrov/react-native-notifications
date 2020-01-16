@@ -8,6 +8,7 @@
 
 + (void)startMonitorNotifications;
 + (void)startMonitorPushKitNotifications;
++ (void)fetchDeviceToken;
 
 + (void)didRegisterForRemoteNotificationsWithDeviceToken:(id)deviceToken;
 + (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;

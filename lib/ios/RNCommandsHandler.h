@@ -19,6 +19,8 @@
 
 - (void)registerPushKit;
 
+- (void)fetchDeviceToken;
+
 - (void)getBadgeCount:(RCTResponseSenderBlock)callback;
 
 - (void)setBadgeCount:(int)count;

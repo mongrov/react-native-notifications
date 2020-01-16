@@ -13,11 +13,13 @@
     RNPushKitEventHandler* _pushKitEventHandler;
     RNEventEmitter* _eventEmitter;
     RNNotificationCenterMulticast* _notificationCenterMulticast;
+    NSData* _deviceToken;
 }
 
 - (instancetype)init {
     self = [super init];
     _notificationEventHandler = [[RNNotificationEventHandler alloc] initWithStore:[RNNotificationsStore new]];
+    _deviceToken = nil;
     return self;
 }
 
@@ -33,6 +35,10 @@
 
 + (void)startMonitorNotifications {
     [[self sharedInstance] startMonitorNotifications];
+}
+
++ (void)fetchDeviceToken {
+    [[self sharedInstance] fetchDeviceToken];
 }
 
 + (void)startMonitorPushKitNotifications {
@@ -69,7 +75,16 @@
     _pushKit = [[RNPushKit alloc] initWithEventHandler:_pushKitEventHandler];
 }
 
+- (void)fetchDeviceToken {
+    //if ([_deviceToken length] > 0) {
+      [_notificationEventHandler didRegisterForRemoteNotificationsWithDeviceToken:_deviceToken];
+    //}
+}
+
 - (void)didRegisterForRemoteNotificationsWithDeviceToken:(id)deviceToken {
+    NSLog(@"received deviceToken");
+    NSLog(@"%@", deviceToken);
+    _deviceToken = [deviceToken dataUsingEncoding:NSUTF8StringEncoding];
     [_notificationEventHandler didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 

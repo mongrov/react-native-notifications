@@ -60,6 +60,10 @@ RCT_EXPORT_METHOD(registerPushKit) {
     [_commandsHandler registerPushKit];
 }
 
+RCT_EXPORT_METHOD(fetchDeviceToken) {
+    [_commandsHandler fetchDeviceToken];
+}
+
 RCT_EXPORT_METHOD(getBadgeCount:(RCTResponseSenderBlock)callback) {
     [_commandsHandler getBadgeCount:callback];
 }

@@ -41,6 +41,11 @@
     [RNNotifications startMonitorPushKitNotifications];
 }
 
+- (void)fetchDeviceToken {
+    [RNNotifications fetchDeviceToken];
+}
+
+
 - (void)getBadgeCount:(RCTResponseSenderBlock)callback {
     NSInteger count = [UIApplication sharedApplication].applicationIconBadgeNumber;
     callback(@[ [NSNumber numberWithInteger:count] ]);
