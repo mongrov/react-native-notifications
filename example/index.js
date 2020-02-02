@@ -21,7 +21,7 @@ class NotificationsExampleApp extends Component {
   }
 
   registerNotificationEvents() {
-    Notifications.events().registerNotificationReceived((notification, completion) => {
+    Notifications.events().registerNotificationReceivedForeground((notification, completion) => {
       this.setState({
         notifications: [...this.state.notifications, notification]
       });
@@ -29,7 +29,7 @@ class NotificationsExampleApp extends Component {
       completion({alert: notification.payload.showAlert, sound: false, badge: false});
     });
 
-    Notifications.events().registerRemoteNotificationOpened((notification, completion) => {
+    Notifications.events().registerNotificationOpened((notification, completion) => {
       this.setState({
         openedNotifications: [...this.state.openedNotifications, notification]
       });

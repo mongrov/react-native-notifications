@@ -1,5 +1,5 @@
 export class Notification {
-  identifier: string;
+  identifier?: string;
   payload: any;
 
   constructor(payload: object) {

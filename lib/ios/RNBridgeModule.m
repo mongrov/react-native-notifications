@@ -64,8 +64,8 @@ RCT_EXPORT_METHOD(fetchDeviceToken) {
     [_commandsHandler fetchDeviceToken];
 }
 
-RCT_EXPORT_METHOD(getBadgeCount:(RCTResponseSenderBlock)callback) {
-    [_commandsHandler getBadgeCount:callback];
+RCT_EXPORT_METHOD(getBadgeCount:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject) {
+    [_commandsHandler getBadgeCount:resolve reject:reject];
 }
 
 RCT_EXPORT_METHOD(setBadgeCount:(int)count) {

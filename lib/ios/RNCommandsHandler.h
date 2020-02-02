@@ -21,7 +21,7 @@
 
 - (void)fetchDeviceToken;
 
-- (void)getBadgeCount:(RCTResponseSenderBlock)callback;
+- (void)getBadgeCount:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject;
 
 - (void)setBadgeCount:(int)count;
 

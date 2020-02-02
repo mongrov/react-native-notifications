@@ -13,26 +13,41 @@ Notifications.events().registerRemoteNotificationsRegistered((event: Registered)
 });
 ```
 
-## registerNotificationReceived()
+## registerNotificationReceivedForeground()
 Fired when a remote notification is received in foreground state. The handler will be invoked with an instance of [Notification](notification-object).
 Should call completion function on iOS, will be ignored on Android.
 
 ```js
-Notifications.events().registerNotificationReceived((notification: Notification, completion: (response: NotificationCompletion) => void) => {
-  console.log(JSON.stringify(notification.data));
+Notifications.events().registerNotificationReceivedForeground((notification: Notification, completion: (response: NotificationCompletion) => void) => {
+  console.log(JSON.stringify(notification.payload));
 
   // Calling completion on iOS with `alert: true` will present the native iOS inApp notification.
   completion({alert: true, sound: true, badge: false});
 });
 ```
 
-## registerRemoteNotificationOpened()
+## registerNotificationReceivedBackground()
+Fired when a remote notification is received in background state. The handler will be invoked with an instance of [Notification](notification-object).
+Should call completion function on iOS, will be ignored on Android.
+
+```js
+Notifications.events().registerNotificationReceivedBackground((notification: Notification, completion: (response: NotificationCompletion) => void) => {
+  console.log(JSON.stringify(notification.payload));
+
+  // Calling completion on iOS with `alert: true` will present the native iOS inApp notification.
+  completion({alert: true, sound: true, badge: false});
+});
+```
+
+To receive background notifications on iOS follow [this guide](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/pushing_background_updates_to_your_app)
+
+## registerNotificationOpened()
 Fired when a remote notification is opened from dead or background state. The handler will be invoked with an instance of [Notification](notification-object).
 Should call completion function on iOS, will be ignored on Android.
 
 ```js
-Notifications.events().registerRemoteNotificationOpened((notification: Notification, completion: () => void) => {
-  console.log(JSON.stringify(notification.data));
+Notifications.events().registerNotificationOpened((notification: Notification, completion: () => void) => {
+  console.log(JSON.stringify(notification.payload));
   completion();
 });
 ```

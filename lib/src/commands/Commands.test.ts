@@ -8,13 +8,16 @@ import { UniqueIdProvider } from '../adapters/UniqueIdProvider';
 import { NotificationCategory } from '../interfaces/NotificationCategory';
 import { NotificationPermissions } from '../interfaces/NotificationPermissions';
 import { NotificationFactory } from '../DTO/NotificationFactory';
+import {NotificationAndroid} from "../DTO/NotificationAndroid";
+import {Platform} from "react-native";
+import {NotificationIOS} from "../DTO/NotificationIOS";
 
 describe('Commands', () => {
   let uut: Commands;
   let mockedNativeCommandsSender: NativeCommandsSender;
   let mockedUniqueIdProvider: UniqueIdProvider;
   let notificationFactory: NotificationFactory
-  
+
   beforeEach(() => {
     notificationFactory = new NotificationFactory();
     mockedNativeCommandsSender = mock(NativeCommandsSender);
@@ -33,10 +36,28 @@ describe('Commands', () => {
       verify(mockedNativeCommandsSender.getInitialNotification()).called();
     });
 
-    it('returns a promise with the initial notification', async () => {
-      const expectedNotification: Notification = new Notification({identifier: 'id'});
+    it('Android - returns a promise with the initial notification', async () => {
+      Platform.OS = 'android';
+      const expectedNotification: Notification = new NotificationAndroid({'google.message_id': 'id'});
       when(mockedNativeCommandsSender.getInitialNotification()).thenResolve(
-        {identifier: 'id'}
+          {'google.message_id': 'id'}
+      );
+      const result = await uut.getInitialNotification();
+      expect(result).toEqual(expectedNotification);
+    });
+
+    it('Should return undefined initial notification', async () => {
+      Platform.OS = 'android';
+      when(mockedNativeCommandsSender.getInitialNotification()).thenResolve();
+      const result = await uut.getInitialNotification();
+      expect(result).toEqual(undefined);
+    });
+
+    it('iOS - returns a promise with the initial notification', async () => {
+      Platform.OS = 'ios';
+      const expectedNotification: Notification = new NotificationIOS({identifier: 'id'});
+      when(mockedNativeCommandsSender.getInitialNotification()).thenResolve(
+          {identifier: 'id'}
       );
       const result = await uut.getInitialNotification();
       expect(result).toEqual(expectedNotification);
@@ -99,7 +120,7 @@ describe('Commands', () => {
       verify(mockedNativeCommandsSender.postLocalNotification(notification, passedId)).called();
     });
   });
-  
+
   describe('getBadgeCount', () => {
     it('sends to native', () => {
       uut.getBadgeCount();
@@ -151,7 +172,7 @@ describe('Commands', () => {
       expect(isRegistered).toEqual(false);
     });
   });
-  
+
   describe('checkPermissions', () => {
     it('sends to native', () => {
       uut.checkPermissions();

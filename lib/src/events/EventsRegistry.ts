@@ -19,12 +19,16 @@ export class EventsRegistry {
     return this.nativeEventsReceiver.registerRemoteNotificationsRegistered(callback);
   }
   
-  public registerNotificationReceived(callback: (notification: Notification, completion: (response: NotificationCompletion) => void) => void): EmitterSubscription {
-    return this.nativeEventsReceiver.registerRemoteNotificationReceived(this.completionCallbackWrapper.wrapReceivedCallback(callback));
+  public registerNotificationReceivedForeground(callback: (notification: Notification, completion: (response: NotificationCompletion) => void) => void): EmitterSubscription {
+    return this.nativeEventsReceiver.registerNotificationReceived(this.completionCallbackWrapper.wrapReceivedForegroundCallback(callback));
+  }
+
+  public registerNotificationReceivedBackground(callback: (notification: Notification, completion: (response: NotificationCompletion) => void) => void): EmitterSubscription {
+    return this.nativeEventsReceiver.registerNotificationReceived(this.completionCallbackWrapper.wrapReceivedBackgroundCallback(callback));
   }
   
-  public registerRemoteNotificationOpened(callback: (response: NotificationResponse, completion: () => void) => void): EmitterSubscription {
-    return this.nativeEventsReceiver.registerRemoteNotificationOpened(this.completionCallbackWrapper.wrapOpenedCallback(callback));
+  public registerNotificationOpened(callback: (response: NotificationResponse, completion: () => void) => void): EmitterSubscription {
+    return this.nativeEventsReceiver.registerNotificationOpened(this.completionCallbackWrapper.wrapOpenedCallback(callback));
   }
   
   public registerRemoteNotificationsRegistrationFailed(callback: (event: RegistrationError) => void): EmitterSubscription {

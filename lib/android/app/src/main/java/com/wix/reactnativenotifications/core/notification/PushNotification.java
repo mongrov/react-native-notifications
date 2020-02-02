@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.os.Debug;
 import android.util.Log;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.WritableMap;
 import com.wix.reactnativenotifications.core.AppLaunchHelper;
 import com.wix.reactnativenotifications.core.AppLifecycleFacade;
 import com.wix.reactnativenotifications.core.AppLifecycleFacade.AppVisibilityListener;
@@ -196,7 +198,10 @@ public class PushNotification implements IPushNotification {
     }
 
     private void notifyOpenedToJS() {
-        mJsIOHelper.sendEventToJS(NOTIFICATION_OPENED_EVENT_NAME, mNotificationProps.asBundle(), mAppLifecycleFacade.getRunningReactContext());
+        Bundle response = new Bundle();
+        response.putBundle("notification", mNotificationProps.asBundle());
+
+        mJsIOHelper.sendEventToJS(NOTIFICATION_OPENED_EVENT_NAME, response, mAppLifecycleFacade.getRunningReactContext());
     }
 
     protected void launchOrResumeApp() {
