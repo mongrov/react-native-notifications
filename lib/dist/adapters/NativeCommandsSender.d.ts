@@ -21,7 +21,7 @@ export declare class NativeCommandsSender {
     checkPermissions(): Promise<NotificationPermissions>;
     removeAllDeliveredNotifications(): void;
     removeDeliveredNotifications(identifiers: Array<string>): void;
-    getDeliveredNotifications(): Array<Notification>;
+    getDeliveredNotifications(): Promise<Notification[]>;
     finishPresentingNotification(notificationId: string, notificationCompletion: NotificationCompletion): void;
     finishHandlingAction(notificationId: string): void;
 }

@@ -9,8 +9,8 @@ export declare class NativeEventsReceiver {
     constructor(notificationFactory: NotificationFactory);
     registerRemoteNotificationsRegistered(callback: (event: Registered) => void): EmitterSubscription;
     registerPushKitRegistered(callback: (event: RegisteredPushKit) => void): EmitterSubscription;
-    registerRemoteNotificationReceived(callback: (notification: Notification) => void): EmitterSubscription;
+    registerNotificationReceived(callback: (notification: Notification) => void): EmitterSubscription;
     registerPushKitNotificationReceived(callback: (event: object) => void): EmitterSubscription;
-    registerRemoteNotificationOpened(callback: (notification: Notification, completion: () => void, actionResponse?: NotificationActionResponse) => void): EmitterSubscription;
+    registerNotificationOpened(callback: (notification: Notification, completion: () => void, actionResponse?: NotificationActionResponse) => void): EmitterSubscription;
     registerRemoteNotificationsRegistrationFailed(callback: (event: RegistrationError) => void): EmitterSubscription;
 }

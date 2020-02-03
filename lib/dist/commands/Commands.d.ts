@@ -24,6 +24,6 @@ export declare class Commands {
     checkPermissions(): Promise<NotificationPermissions>;
     removeAllDeliveredNotifications(): void;
     removeDeliveredNotifications(identifiers: Array<string>): void;
-    getDeliveredNotifications(): Array<Notification>;
+    getDeliveredNotifications(): Promise<Notification[]>;
     refreshToken(): void;
 }

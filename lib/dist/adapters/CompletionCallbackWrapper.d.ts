@@ -1,8 +1,11 @@
 import { NativeCommandsSender } from './NativeCommandsSender';
-import { Notification } from '../DTO/Notification';
+import { Notification } from "..";
 export declare class CompletionCallbackWrapper {
     private readonly nativeCommandsSender;
     constructor(nativeCommandsSender: NativeCommandsSender);
-    wrapReceivedCallback(callback: Function): (notification: Notification) => void;
+    wrapReceivedBackgroundCallback(callback: Function): (notification: Notification) => void;
+    wrapReceivedForegroundCallback(callback: Function): (notification: Notification) => void;
+    private wrapReceivedAndInvoke;
     wrapOpenedCallback(callback: Function): (notification: Notification) => void;
+    private applicationIsVisible;
 }

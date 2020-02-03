@@ -42,7 +42,7 @@ export declare class NotificationsIOS {
     /**
      * getDeliveredNotifications
      */
-    getDeliveredNotifications(): Array<Notification>;
+    getDeliveredNotifications(): Promise<Notification[]>;
     /**
      * Obtain the events registry instance
      */
