@@ -73,6 +73,13 @@ export class NotificationsRoot {
   }
 
   /**
+   * getBadgeCount
+   */
+  public getBadgeCount(): Promise<number> {
+    return this.commands.getBadgeCount();
+  }
+
+  /**
    * setCategories
    */
   public setCategories(categories: [NotificationCategory?]) {

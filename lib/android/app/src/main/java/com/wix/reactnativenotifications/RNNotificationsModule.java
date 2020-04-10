@@ -84,6 +84,17 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     }
 
     @ReactMethod
+    public void getBadgeCount(Promise promise) {
+        Log.d(LOGTAG, "Native method invocation: getBadgeCount()");
+        final IPushNotification notification = PushNotification.get(getReactApplicationContext().getApplicationContext(), new Bundle());
+        int received = 0;
+        if (notification != null) {
+            received = notification.getCounter();
+        }
+        promise.resolve(new Integer(received));
+    }
+
+    @ReactMethod
     public void getInitialNotification(final Promise promise) {
         if(BuildConfig.DEBUG) Log.d(LOGTAG, "Native method invocation: getInitialNotification");
         Object result = null;
@@ -134,6 +145,11 @@ public class RNNotificationsModule extends ReactContextBaseJavaModule implements
     @ReactMethod void removeAllDeliveredNotifications() {
         IPushNotificationsDrawer notificationsDrawer = PushNotificationsDrawer.get(getReactApplicationContext().getApplicationContext());
         notificationsDrawer.onAllNotificationsClearRequest();
+        // clear the counter
+        final IPushNotification notification = PushNotification.get(getReactApplicationContext().getApplicationContext(), new Bundle());
+        if (notification != null) {
+            notification.resetCounter();
+        }
     }
 
     @ReactMethod

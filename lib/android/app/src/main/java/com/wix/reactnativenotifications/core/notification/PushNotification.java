@@ -28,6 +28,7 @@ public class PushNotification implements IPushNotification {
     final protected AppLifecycleFacade mAppLifecycleFacade;
     final protected AppLaunchHelper mAppLaunchHelper;
     final protected JsIOHelper mJsIOHelper;
+    static protected int _counter = 0;
     final protected PushNotificationProps mNotificationProps;
     final protected AppVisibilityListener mAppVisibilityListener = new AppVisibilityListener() {
         @Override
@@ -60,9 +61,18 @@ public class PushNotification implements IPushNotification {
     @Override
     public void onReceived() throws InvalidNotificationException {
         if (!mAppLifecycleFacade.isAppVisible()) {
+            _counter = _counter +1;
             postNotification(null);
         }
         notifyReceivedToJS();
+    }
+
+    public int getCounter() {
+        return _counter;
+    }
+
+    public void resetCounter() {
+        _counter = 0;
     }
 
     @Override
