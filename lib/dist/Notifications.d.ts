@@ -33,6 +33,10 @@ export declare class NotificationsRoot {
      */
     fetchDeviceToken(): void;
     /**
+     * getBadgeCount
+     */
+    getBadgeCount(): Promise<number>;
+    /**
      * setCategories
      */
     setCategories(categories: [NotificationCategory?]): void;
