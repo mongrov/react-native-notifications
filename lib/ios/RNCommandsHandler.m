@@ -83,8 +83,8 @@
     [_notificationCenter removeDeliveredNotifications:identifiers];
 }
 
-- (void)getDeliveredNotifications:(RCTResponseSenderBlock)callback {
-    [_notificationCenter getDeliveredNotifications:callback];
+- (void)getDeliveredNotifications:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
+    [_notificationCenter getDeliveredNotifications:resolve];
 }
 
 @end
