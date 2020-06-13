@@ -13,7 +13,7 @@ Notifications.registerRemoteNotifications();
 ```
 
 ## getInitialNotification()
-This method returns a promise. If the app was launched by a push notification, this promise resolves to an object of type [Notification](notification-object). Otherwise, it resolves to undefined.
+This method returns a promise. If the app was launched by a push notification, this promise resolves to an object of type [Notification](notification-obj). Otherwise, it resolves to undefined.
 
 ```js
 const notification: Notification = await Notifications.getInitialNotification();
@@ -24,7 +24,7 @@ Posts local notification to the device notification center.
 
 ```js
 Notifications.postLocalNotification({
-  body: 'Local notificiation!',
+  body: 'Local notification!',
   title: 'Local Notification Title',
   sound: 'chime.aiff',
   category: 'SOME_CATEGORY',

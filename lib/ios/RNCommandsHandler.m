@@ -59,7 +59,7 @@
     [_notificationCenter postLocalNotification:notification withId:notificationId];
 }
 
-- (void)cancelLocalNotification:(NSString *)notificationId {
+- (void)cancelLocalNotification:(NSNumber *)notificationId {
     [_notificationCenter cancelLocalNotification:notificationId];
 }
 

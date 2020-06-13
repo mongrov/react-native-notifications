@@ -27,7 +27,7 @@
 
 - (void)postLocalNotification:(NSDictionary *)notification withId:(NSNumber *)notificationId;
 
-- (void)cancelLocalNotification:(NSString *)notificationId;
+- (void)cancelLocalNotification:(NSNumber *)notificationId;
 
 - (void)cancelAllLocalNotifications;
 
