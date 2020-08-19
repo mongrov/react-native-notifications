@@ -1,6 +1,6 @@
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import <PushKit/PushKit.h>
-@import UserNotifications;
+#import <UserNotifications/UserNotifications.h>
 
 @interface RNNotifications : NSObject
 
@@ -9,6 +9,8 @@
 + (void)startMonitorNotifications;
 + (void)startMonitorPushKitNotifications;
 + (void)fetchDeviceToken;
+
++ (void)didReceiveBackgroundNotification:(NSDictionary *)userInfo withCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 
 + (void)didRegisterForRemoteNotificationsWithDeviceToken:(id)deviceToken;
 + (void)didFailToRegisterForRemoteNotificationsWithError:(NSError *)error;

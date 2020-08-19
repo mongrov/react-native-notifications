@@ -26,6 +26,7 @@ interface NativeCommandsModule {
   finishPresentingNotification(notificationId: string, callback: NotificationCompletion): void;
   finishHandlingAction(notificationId: string): void;
   setNotificationChannel(notificationChannel: NotificationChannel): void;
+  finishHandlingBackgroundAction(notificationId: string, backgroundFetchResult: string): void;
 }
 
 export class NativeCommandsSender {
@@ -112,5 +113,9 @@ export class NativeCommandsSender {
 
   setNotificationChannel(notificationChannel: NotificationChannel) {
     this.nativeCommandsModule.setNotificationChannel(notificationChannel);
+  }
+
+  finishHandlingBackgroundAction(notificationId: string, backgroundFetchResult: string): void {
+    this.nativeCommandsModule.finishHandlingBackgroundAction(notificationId, backgroundFetchResult);
   }
 }

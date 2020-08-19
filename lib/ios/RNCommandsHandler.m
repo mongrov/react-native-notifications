@@ -33,6 +33,10 @@
     [[RNNotificationsStore sharedInstance] completePresentation:completionKey withPresentationOptions:[RCTConvert UNNotificationPresentationOptions:presentingOptions]];
 }
 
+- (void)finishHandlingBackgroundAction:(NSString *)completionKey backgroundFetchResult:(NSString *)backgroundFetchResult {
+    [[RNNotificationsStore sharedInstance] completeBackgroundAction:completionKey withBackgroundFetchResult:[RCTConvert UIBackgroundFetchResult:backgroundFetchResult]];
+}
+
 - (void)abandonPermissions {
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
 }
@@ -52,7 +56,9 @@
 }
 
 - (void)setBadgeCount:(int)count {
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
+    });
 }
 
 - (void)postLocalNotification:(NSDictionary *)notification withId:(NSNumber *)notificationId {
