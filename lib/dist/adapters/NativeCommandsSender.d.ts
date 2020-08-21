@@ -26,4 +26,5 @@ export declare class NativeCommandsSender {
     finishPresentingNotification(notificationId: string, notificationCompletion: NotificationCompletion): void;
     finishHandlingAction(notificationId: string): void;
     setNotificationChannel(notificationChannel: NotificationChannel): void;
+    finishHandlingBackgroundAction(notificationId: string, backgroundFetchResult: string): void;
 }
