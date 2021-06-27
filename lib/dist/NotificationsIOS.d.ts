@@ -1,6 +1,7 @@
 import { Notification } from './DTO/Notification';
 import { Commands } from './commands/Commands';
 import { EventsRegistryIOS } from './events/EventsRegistryIOS';
+import { RequestPermissionsOptions } from './adapters/NativeCommandsSender';
 export declare class NotificationsIOS {
     private readonly commands;
     private readonly eventsRegistry;
@@ -8,7 +9,7 @@ export declare class NotificationsIOS {
     /**
     * Request permissions to send remote notifications
     */
-    registerRemoteNotifications(): void;
+    registerRemoteNotifications(options?: RequestPermissionsOptions[]): void;
     /**
     * Unregister for all remote notifications received via Apple Push Notification service
     */

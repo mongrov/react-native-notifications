@@ -1,5 +1,4 @@
-import * as _ from 'lodash';
-import { NativeCommandsSender } from '../adapters/NativeCommandsSender';
+import { NativeCommandsSender, RequestPermissionsOptions } from '../adapters/NativeCommandsSender';
 import { Notification } from '../DTO/Notification';
 import { NotificationCategory } from '../interfaces/NotificationCategory';
 import { NotificationChannel } from '../interfaces/NotificationChannel';
@@ -34,8 +33,8 @@ export class Commands {
     return this.nativeCommandsSender.fetchDeviceToken();
   }
 
-  public requestPermissions() {
-    const result = this.nativeCommandsSender.requestPermissions();
+  public requestPermissions(options?: RequestPermissionsOptions[]) {
+    const result = this.nativeCommandsSender.requestPermissions(options);
     return result;
   }
 

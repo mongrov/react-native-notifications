@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import { mock, verify, instance, when, anyNumber } from 'ts-mockito';
 
 import { Commands } from './Commands';
@@ -67,7 +66,7 @@ describe('Commands', () => {
   describe('requestPermissions', () => {
     it('sends to native', () => {
       uut.requestPermissions();
-      verify(mockedNativeCommandsSender.requestPermissions()).called();
+      verify(mockedNativeCommandsSender.requestPermissions(undefined)).called();
     });
   });
 

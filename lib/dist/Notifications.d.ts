@@ -1,3 +1,4 @@
+import { RequestPermissionsOptions } from './adapters/NativeCommandsSender';
 import { EventsRegistry } from './events/EventsRegistry';
 import { Notification } from './DTO/Notification';
 import { NotificationCategory } from './interfaces/NotificationCategory';
@@ -19,7 +20,7 @@ export declare class NotificationsRoot {
     /**
      * registerRemoteNotifications
      */
-    registerRemoteNotifications(): void;
+    registerRemoteNotifications(options?: RequestPermissionsOptions[]): void;
     /**
      * postLocalNotification
      */
@@ -63,6 +64,6 @@ export declare class NotificationsRoot {
     /**
      * ios/android getters
      */
-    readonly ios: NotificationsIOS;
-    readonly android: NotificationsAndroid;
+    get ios(): NotificationsIOS;
+    get android(): NotificationsAndroid;
 }

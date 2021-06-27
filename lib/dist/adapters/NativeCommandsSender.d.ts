@@ -3,12 +3,13 @@ import { NotificationCompletion } from '../interfaces/NotificationCompletion';
 import { NotificationPermissions } from '../interfaces/NotificationPermissions';
 import { NotificationCategory } from '../interfaces/NotificationCategory';
 import { NotificationChannel } from '../interfaces/NotificationChannel';
+export declare type RequestPermissionsOptions = 'ProvidesAppNotificationSettings' | 'Provisional';
 export declare class NativeCommandsSender {
     private readonly nativeCommandsModule;
     constructor();
     postLocalNotification(notification: Notification, id: number): void;
     getInitialNotification(): Promise<Object>;
-    requestPermissions(): void;
+    requestPermissions(options?: RequestPermissionsOptions[]): void;
     abandonPermissions(): void;
     refreshToken(): void;
     registerPushKit(): void;

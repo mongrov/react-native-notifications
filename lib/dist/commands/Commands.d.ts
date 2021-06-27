@@ -1,4 +1,4 @@
-import { NativeCommandsSender } from '../adapters/NativeCommandsSender';
+import { NativeCommandsSender, RequestPermissionsOptions } from '../adapters/NativeCommandsSender';
 import { Notification } from '../DTO/Notification';
 import { NotificationCategory } from '../interfaces/NotificationCategory';
 import { NotificationChannel } from '../interfaces/NotificationChannel';
@@ -13,7 +13,7 @@ export declare class Commands {
     postLocalNotification(notification: Notification, id?: number): number;
     getInitialNotification(): Promise<Notification | undefined>;
     fetchDeviceToken(): void;
-    requestPermissions(): void;
+    requestPermissions(options?: RequestPermissionsOptions[]): void;
     abandonPermissions(): void;
     registerPushKit(): void;
     setCategories(categories: [NotificationCategory?]): void;
