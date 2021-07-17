@@ -3,13 +3,13 @@ import { NotificationCompletion } from '../interfaces/NotificationCompletion';
 import { NotificationPermissions } from '../interfaces/NotificationPermissions';
 import { NotificationCategory } from '../interfaces/NotificationCategory';
 import { NotificationChannel } from '../interfaces/NotificationChannel';
-export declare type RequestPermissionsOptions = 'ProvidesAppNotificationSettings' | 'Provisional';
+import { NotificationPermissionOptions } from '../interfaces/NotificationPermissions';
 export declare class NativeCommandsSender {
     private readonly nativeCommandsModule;
     constructor();
     postLocalNotification(notification: Notification, id: number): void;
     getInitialNotification(): Promise<Object>;
-    requestPermissions(options?: RequestPermissionsOptions[]): void;
+    requestPermissions(options?: NotificationPermissionOptions): void;
     abandonPermissions(): void;
     refreshToken(): void;
     registerPushKit(): void;
@@ -17,7 +17,7 @@ export declare class NativeCommandsSender {
     getBadgeCount(): Promise<number>;
     fetchDeviceToken(): void;
     setBadgeCount(count: number): void;
-    cancelLocalNotification(notificationId: string): void;
+    cancelLocalNotification(notificationId: number): void;
     cancelAllLocalNotifications(): void;
     isRegisteredForRemoteNotifications(): Promise<any>;
     checkPermissions(): Promise<NotificationPermissions>;

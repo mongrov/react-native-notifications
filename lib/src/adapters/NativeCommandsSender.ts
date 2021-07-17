@@ -4,18 +4,19 @@ import { NotificationCompletion } from '../interfaces/NotificationCompletion';
 import { NotificationPermissions } from '../interfaces/NotificationPermissions';
 import { NotificationCategory } from '../interfaces/NotificationCategory';
 import { NotificationChannel } from '../interfaces/NotificationChannel';
+import { NotificationPermissionOptions } from '../interfaces/NotificationPermissions';
 
 interface NativeCommandsModule {
   getInitialNotification(): Promise<Object>;
   postLocalNotification(notification: Notification, id: number): void;
-  requestPermissions(options?: RequestPermissionsOptions[]): void;
+  requestPermissions(options: NotificationPermissionOptions): void;
   abandonPermissions(): void;
   refreshToken(): void;
   registerPushKit(): void;
   fetchDeviceToken(): void;
   getBadgeCount(): Promise<number>;
   setBadgeCount(count: number): void;
-  cancelLocalNotification(notificationId: string): void;
+  cancelLocalNotification(notificationId: number): void;
   cancelAllLocalNotifications(): void;
   isRegisteredForRemoteNotifications(): Promise<boolean>;
   checkPermissions(): Promise<NotificationPermissions>;
@@ -28,8 +29,6 @@ interface NativeCommandsModule {
   setNotificationChannel(notificationChannel: NotificationChannel): void;
   finishHandlingBackgroundAction(notificationId: string, backgroundFetchResult: string): void;
 }
-
-export type RequestPermissionsOptions = 'ProvidesAppNotificationSettings' | 'Provisional';
 
 export class NativeCommandsSender {
   private readonly nativeCommandsModule: NativeCommandsModule;
@@ -44,9 +43,9 @@ export class NativeCommandsSender {
   getInitialNotification(): Promise<Object> {
     return this.nativeCommandsModule.getInitialNotification();
   }
-  
-  requestPermissions(options?: RequestPermissionsOptions[]) {
-    return this.nativeCommandsModule.requestPermissions(options);
+
+  requestPermissions(options?: NotificationPermissionOptions) {
+    return this.nativeCommandsModule.requestPermissions(options || {});
   }
 
   abandonPermissions() {
@@ -77,7 +76,7 @@ export class NativeCommandsSender {
     this.nativeCommandsModule.setBadgeCount(count);
   }
 
-  cancelLocalNotification(notificationId: string) {
+  cancelLocalNotification(notificationId: number) {
     this.nativeCommandsModule.cancelLocalNotification(notificationId);
   }
 

@@ -1,10 +1,11 @@
-import { NativeCommandsSender, RequestPermissionsOptions } from '../adapters/NativeCommandsSender';
+import { NativeCommandsSender } from '../adapters/NativeCommandsSender';
 import { Notification } from '../DTO/Notification';
 import { NotificationCategory } from '../interfaces/NotificationCategory';
 import { NotificationChannel } from '../interfaces/NotificationChannel';
 import { NotificationPermissions } from '../interfaces/NotificationPermissions';
 import { UniqueIdProvider } from '../adapters/UniqueIdProvider';
 import { NotificationFactory } from '../DTO/NotificationFactory';
+import { NotificationPermissionOptions } from '../interfaces/NotificationPermissions';
 export declare class Commands {
     private readonly nativeCommandsSender;
     private readonly uniqueIdProvider;
@@ -13,13 +14,13 @@ export declare class Commands {
     postLocalNotification(notification: Notification, id?: number): number;
     getInitialNotification(): Promise<Notification | undefined>;
     fetchDeviceToken(): void;
-    requestPermissions(options?: RequestPermissionsOptions[]): void;
+    requestPermissions(options?: NotificationPermissionOptions): void;
     abandonPermissions(): void;
     registerPushKit(): void;
     setCategories(categories: [NotificationCategory?]): void;
     getBadgeCount(): Promise<number>;
     setBadgeCount(count: number): void;
-    cancelLocalNotification(notificationId: string): void;
+    cancelLocalNotification(notificationId: number): void;
     cancelAllLocalNotifications(): void;
     isRegisteredForRemoteNotifications(): Promise<boolean>;
     checkPermissions(): Promise<NotificationPermissions>;

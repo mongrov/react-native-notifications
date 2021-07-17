@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <PushKit/PushKit.h>
 #import <UserNotifications/UserNotifications.h>
+#import "RNNotificationCenterMulticast.h"
 
 @interface RNNotifications : NSObject
 
@@ -19,5 +20,6 @@
 + (void)removeNativeDelegate:(id<UNUserNotificationCenterDelegate>)delegate;
 
 @property (class) NSMutableString *deviceToken;
+- (RNNotificationCenterMulticast*)multicast;
 
 @end
